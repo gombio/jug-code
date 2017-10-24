@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: wordpress-two
+spec:
+  template:
+    metadata:
+      labels:
+        app: wordpress-two
+    spec:
+      containers:
+      - name: wordpress
+        image: wordpress
+        env:
+        - name: WORDPRESS_DB_HOST
+          value: "wordpress-two-mysql-service"
+        - name: WORDPRESS_DB_PASSWORD
+          value: "example"
+        ports:
+        - containerPort: 80
