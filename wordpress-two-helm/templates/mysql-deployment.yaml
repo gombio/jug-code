@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ .Values.client }}-mysql
+spec:
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.client }}-mysql
+    spec:
+      containers:
+      - name: mysql
+        image: {{ .Values.mysql.image }}
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "{{ .Values.mysql.pass }}"
+        ports:
+        - containerPort: {{ .Values.mysql.port }}

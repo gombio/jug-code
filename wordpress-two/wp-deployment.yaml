@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   name: wordpress-two
 spec:
+  # replicas: 1
   template:
     metadata:
       labels:
@@ -16,5 +17,9 @@ spec:
           value: "wordpress-two-mysql-service"
         - name: WORDPRESS_DB_PASSWORD
           value: "example"
+        # resources:
+        #   requests:
+        #     cpu: 1500m
+        #     memory: 2560Mi
         ports:
         - containerPort: 80

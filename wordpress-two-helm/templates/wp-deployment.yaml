@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ .Values.client }}-wp
+spec:
+  replicas: {{ .Values.wordpress.replicas }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.client }}-wp
+    spec:
+      containers:
+      - name: wordpress
+        image: {{ .Values.wordpress.image }}
+        env:
+        - name: WORDPRESS_DB_HOST
+          value: "{{ .Values.client }}-mysql"
+        - name: WORDPRESS_DB_PASSWORD
+          value: "{{ .Values.mysql.pass }}"
+        resources:
+          requests:
+            cpu: {{ .Values.wordpress.requests.cpu }}
+            memory: {{ .Values.wordpress.requests.memory }}
+        ports:
+        - containerPort: 80

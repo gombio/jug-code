@@ -1,0 +1,5 @@
+awsRegion: eu-west-1
+autoscalingGroups:
+  - name:  nodes.jug.k8s.local
+    maxSize: 10
+    minSize: 1

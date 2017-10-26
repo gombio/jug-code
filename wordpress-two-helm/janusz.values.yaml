@@ -1,0 +1,15 @@
+client: janusz
+mysql:
+  image: "mysql:latest"
+  pass: adasdasdkjqwlkejqwkaldkjaslkdjaslkqwljeql
+  port: 3306
+wordpress:
+  replicas: 2
+  requests:
+    cpu: 1500m
+    memory: 2560Mi
+  image: "wordpress:latest"
+  hpa:
+    min: 2
+    max: 10
+    target: 25
